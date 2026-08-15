@@ -1,0 +1,159 @@
+@import "tailwindcss";
+
+@theme {
+  /* VOLTERRA brand palette */
+  --color-volt-black: #0a0a0a;
+  --color-volt-ink: #141414;
+  --color-volt-charcoal: #1d1d1d;
+  --color-volt-graphite: #2a2a2a;
+  --color-volt-smoke: #f4f4f2;
+  --color-volt-mist: #e9e9e6;
+  --color-volt-line: #dcdcd8;
+  --color-volt-orange: #ff4d00;
+  --color-volt-orange-dark: #d63f00;
+  --color-volt-orange-soft: #ffe9df;
+
+  /* Typography */
+  --font-display: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  /* Motion */
+  --ease-volt: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --animate-shimmer: shimmer 1.6s linear infinite;
+  --animate-fade-up: fade-up 0.5s var(--ease-volt) both;
+  --animate-marquee: marquee 28s linear infinite;
+  --animate-pulse-soft: pulse-soft 2s ease-in-out infinite;
+
+  @keyframes shimmer {
+    0% {
+      background-position: -400px 0;
+    }
+    100% {
+      background-position: 400px 0;
+    }
+  }
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes pulse-soft {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.55;
+    }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-white text-volt-black font-sans antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-volt-orange);
+  color: #fff;
+}
+
+/* VOLTERRA display headline — expanded condensed athletic type */
+.display {
+  font-family: var(--font-display);
+  font-stretch: 125%;
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: -0.015em;
+  text-transform: uppercase;
+}
+
+.display-tight {
+  font-family: var(--font-display);
+  font-stretch: 115%;
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+/* Accessible focus states */
+:focus-visible {
+  outline: 2px solid var(--color-volt-orange);
+  outline-offset: 2px;
+}
+
+/* Skeleton loader */
+.skeleton {
+  @apply relative overflow-hidden bg-volt-mist;
+}
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.6),
+    transparent
+  );
+  background-size: 400px 100%;
+  animation: shimmer 1.6s linear infinite;
+}
+
+/* Hide scrollbar for horizontal scrollers */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Custom slim scrollbar for desktop */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #c9c9c4;
+  border-radius: 0;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-volt-graphite);
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
