@@ -89,3 +89,4 @@ back to demo mode automatically and logs a warning.
 - React Bits components live in `src/components/ReactBits` and are imported only where used.
 - Design system: black / white / electric-orange on a near-black (`#0a0a0a`) palette, sharp corners, editorial type.
 "# VOLTERRA" 
+"# VOLTERRA" 
